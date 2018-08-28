@@ -1,103 +1,103 @@
-#¸üĞÂÓ¦ÓÃ³ÌĞò
+#æ›´æ–°åº”ç”¨ç¨‹åº
 
-#************************begin ²ÎÊıÉèÖÃ**************************************
-#¸üĞÂ°æ±¾ÀàĞÍ£º²âÊÔTest¡¢ÕıÊ½Release
+#************************begin å‚æ•°è®¾ç½®**************************************
+#æ›´æ–°ç‰ˆæœ¬ç±»å‹ï¼šæµ‹è¯•Testã€æ­£å¼Release
 $Type = "Test"
-#Ô´·şÎñ´æ·Å¸üĞÂµÄÎÄ¼ş¼ĞÃû
+#æºæœåŠ¡å­˜æ”¾æ›´æ–°çš„æ–‡ä»¶å¤¹å
 $Project_Name = "56CTM"
-#Ä¿±ê·şÎñÔËĞĞÎÄ¼ş¼ĞÃû
+#ç›®æ ‡æœåŠ¡è¿è¡Œæ–‡ä»¶å¤¹å
 $Project_Name_1 = "56CTM_1"
 $Project_Name_2 = "56CTM_2"
-#Ä¿±êIISÓ¦ÓÃÃû³Æ
+#ç›®æ ‡IISåº”ç”¨åç§°
 $IIS_Name_1 = "56CTM_1"
 $IIS_Name_2 = "56CTM_2"
 
 
 
-#£¨ĞÂÔö20171106£©---------------------------
-#Ó¦ÓÃ³ÌĞò³Ø
+#ï¼ˆæ–°å¢20171106ï¼‰---------------------------
+#åº”ç”¨ç¨‹åºæ± 
 $AppPools_Path = "IIS:\AppPools\"
 $AppPools_Name_1 = $AppPools_Path + $IIS_Name_1
 $AppPools_Name_2 = $AppPools_Path + $IIS_Name_2
 #-------------------------------------------
 
-#Òì³£´¦Àí
+#å¼‚å¸¸å¤„ç†
 Trap {
- #½áÊøÖ´ĞĞ
- echo "²¶»ñÒì³£ĞÅÏ¢: $error[0] "
+ #ç»“æŸæ‰§è¡Œ
+ echo "æ•è·å¼‚å¸¸ä¿¡æ¯: $error[0] "
  break
 }
 
 $ErrorActionPreference='stop'
 
-#Ä¿±ê·şÎñÆ÷Êı×é
+#ç›®æ ‡æœåŠ¡å™¨æ•°ç»„
 $destarray=New-Object 'string[,]' 1,3
-#10·şÎñÆ÷
+#10æœåŠ¡å™¨
 $destarray[0,0]="192.168.1.246"
-$destarray[0,1]="Administrator"
-$destarray[0,2]="Dianjue@0702"
+$destarray[0,1]="******"
+$destarray[0,2]="******"
 
 
 
 
-#Ô´ÃÜÂë
-$originpass = ConvertTo-SecureString -String 'Dianjue@0702' -AsPlainText -Force 
-#Æ¾Ö¤
+#æºå¯†ç 
+$originpass = ConvertTo-SecureString -String '******' -AsPlainText -Force 
+#å‡­è¯
 $origincre = New-Object pscredential('Administrator', $originpass)
-#Ô´»á»°
+#æºä¼šè¯
 $originsession = New-PSSession -ComputerName 192.168.1.243 -Credential $origincre
 
-#**************************end ²ÎÊıÉèÖÃ***************************************
+#**************************end å‚æ•°è®¾ç½®***************************************
 
 
-#**********************************begin ³õÊ¼»¯¸³Öµ***************************
-#¸üĞÂµ±Ç°Ê±¼ä
+#**********************************begin åˆå§‹åŒ–èµ‹å€¼***************************
+#æ›´æ–°å½“å‰æ—¶é—´
 $today = Get-Date -Format 'yyyyMMddHHmmss'
 $File_Name_WithoutEx = $Type + "_" + $Project_Name + "_" + $today
 $File_Name = $File_Name_WithoutEx +".zip"
 
-#Ô´»·¾³´æ·Å56CTM¸üĞÂÎÄ¼şÄ¿Â¼
+#æºç¯å¢ƒå­˜æ”¾56CTMæ›´æ–°æ–‡ä»¶ç›®å½•
 $56CTM_Origin_Root = "D:\LogisticsPlatform\"
 $56CTM_Origin_Path =$56CTM_Origin_Root + $Project_Name
-#Ô´»·¾³´æ·ÅÑ¹ËõÎÄ¼şÄ¿Â¼
+#æºç¯å¢ƒå­˜æ”¾å‹ç¼©æ–‡ä»¶ç›®å½•
 $56CTM_Origin_Send_Path = $56CTM_Origin_Root + "Root_CTM_Send\"
-#Ô´¿½±´»·¾³·¢²¼ÎÄ¼şµ½ÁÙÊ±Ä¿Â¼
+#æºæ‹·è´ç¯å¢ƒå‘å¸ƒæ–‡ä»¶åˆ°ä¸´æ—¶ç›®å½•
 $56CTM_Origin_Send_TEMP_Path = $56CTM_Origin_Send_Path + $File_Name_WithoutEx + "\"
-#Ô´²âÊÔ»·¾³Ñ¹ËõÎÄ¼ş
+#æºæµ‹è¯•ç¯å¢ƒå‹ç¼©æ–‡ä»¶
 $56CTM_Origin_Send_File_Path = $56CTM_Origin_Send_Path + $File_Name
 
 
-#Ä¿µÄ¸ùÄ¿Â¼
+#ç›®çš„æ ¹ç›®å½•
 $56CTM_Dest_Root = "D:\LogisticsPlatform\"
-#Ä¿µÄ»·¾³½ÓÊÕ²âÊÔ»·¾³Ñ¹ËõÄ¿Â¼
+#ç›®çš„ç¯å¢ƒæ¥æ”¶æµ‹è¯•ç¯å¢ƒå‹ç¼©ç›®å½•
 $56CTM_Dest_Receive_Path = $56CTM_Dest_Root + "Root_CTM_Receive\"
-#Ä¿µÄ»·¾³´æ·Å²âÊÔ»·¾³Ñ¹ËõÎÄ¼şÄ¿Â¼
+#ç›®çš„ç¯å¢ƒå­˜æ”¾æµ‹è¯•ç¯å¢ƒå‹ç¼©æ–‡ä»¶ç›®å½•
 $56CTM_Dest_Receive_File_Path = $56CTM_Dest_Receive_Path + $File_Name
-#Ä¿µÄ»·¾³´æ·Å´ı·¢²¼³ÌĞòÄ¿Â¼
+#ç›®çš„ç¯å¢ƒå­˜æ”¾å¾…å‘å¸ƒç¨‹åºç›®å½•
 $56CTM_Dest_Update_Path = $56CTM_Dest_Receive_Path + $Project_Name + "\"
-#Ä¿µÄÔËĞĞ³ÌĞòÂ·¾¶
+#ç›®çš„è¿è¡Œç¨‹åºè·¯å¾„
 $56CTM_Dest_Path_1 = $56CTM_Dest_Root + $Project_Name_1 
 $56CTM_Dest_Path_2 = $56CTM_Dest_Root + $Project_Name_2 
 
-#Ä¿±êÔËĞĞ³ÌĞò±¸·İÂ·¾¶
+#ç›®æ ‡è¿è¡Œç¨‹åºå¤‡ä»½è·¯å¾„
 $56CTM_Dest_Backup_Path = $56CTM_Dest_Root + "Root_CTM_Backup\"
-#Ä¿±êÔËĞĞ³ÌĞò±¸·İÂ·¾¶
+#ç›®æ ‡è¿è¡Œç¨‹åºå¤‡ä»½è·¯å¾„
 #$56CTM_Dest_Backup_File_Path = $56CTM_Dest_Backup_Path + $File_Name
-#Ä¿±êÔËĞĞ³ÌĞò±¸·İÂ·¾¶
+#ç›®æ ‡è¿è¡Œç¨‹åºå¤‡ä»½è·¯å¾„
 $56CTM_Dest_Backup_File_Path = $56CTM_Dest_Backup_Path + $File_Name_WithoutEx
 
-#·¢²¼·şÎñÆ÷´æ·ÅÑ¹ËõÎÄ¼şÂ·¾¶
+#å‘å¸ƒæœåŠ¡å™¨å­˜æ”¾å‹ç¼©æ–‡ä»¶è·¯å¾„
 $56CTM_Publish_Root = "D:\LogisticsPlatform\"
 $56CTM_Publish_Receive_Path = $56CTM_Publish_Root + "Root_CTM_Receive\"
 $56CTM_Publish_Send_Path = $56CTM_Publish_Root + "Root_CTM_Send\"
 $56CTM_Publish_Receive_File_Path = $56CTM_Publish_Receive_Path + $File_Name
 $56CTM_Publish_Send_File_Path = $56CTM_Publish_Send_Path + $File_Name
-#**********************************end Ä¿µÄ·şÎñÆ÷³õÊ¼»¯¸³Öµ***************************
+#**********************************end ç›®çš„æœåŠ¡å™¨åˆå§‹åŒ–èµ‹å€¼***************************
 
-echo "²âÊÔ¿â·¢²¼¿ªÊ¼..."
+echo "æµ‹è¯•åº“å‘å¸ƒå¼€å§‹..."
 
 #***********************************begin Origin**************************************
-#-ArgumentList´«Èë±¾µØ²ÎÊı
+#-ArgumentListä¼ å…¥æœ¬åœ°å‚æ•°
 Invoke-Command -Session $originsession -ScriptBlock{
     param($56CTM_Origin_Path,$56CTM_Origin_Send_TEMP_Path,$56CTM_Origin_Send_Path) 
     
@@ -106,10 +106,10 @@ Invoke-Command -Session $originsession -ScriptBlock{
     Else
     { mkdir $56CTM_Origin_Send_Path }
     
-    #´´½¨ÁÙÊ±Ä¿Â¼
+    #åˆ›å»ºä¸´æ—¶ç›®å½•
     mkdir $56CTM_Origin_Send_TEMP_Path
 
-    #°ÑOrigin»·¾³µÄÔËĞĞ³ÌĞò¿½±´µ½ÁÙÊ±Ä¿Â¼
+    #æŠŠOriginç¯å¢ƒçš„è¿è¡Œç¨‹åºæ‹·è´åˆ°ä¸´æ—¶ç›®å½•
     cp $56CTM_Origin_Path $56CTM_Origin_Send_TEMP_Path -Recurse -Force
     
 } -ArgumentList $56CTM_Origin_Path,$56CTM_Origin_Send_TEMP_Path,$56CTM_Origin_Send_Path
@@ -119,7 +119,7 @@ Invoke-Command -Session $originsession -ScriptBlock{
     param($56CTM_Origin_Send_TEMP_Path,$56CTM_Origin_Send_File_Path,$Project_Name)       
   
     $Work_Root = $56CTM_Origin_Send_TEMP_Path + $Project_Name 
-    #É¾³ıÄ¿Â¼DownFile¡¢logs¡¢MakeExcelFiles¡¢upload¡¢Template
+    #åˆ é™¤ç›®å½•DownFileã€logsã€MakeExcelFilesã€uploadã€Template
     If(Test-Path("$Work_Root\DownFile"))
     { Remove-Item "$Work_Root\DownFile" -Recurse -Force -Confirm:$false }
     If(Test-Path("$Work_Root\logs"))
@@ -131,29 +131,29 @@ Invoke-Command -Session $originsession -ScriptBlock{
 	    If(Test-Path("$Work_Root\Template"))
     { Remove-Item "$Work_Root\Template" -Recurse -Force -Confirm:$false }
  
-    #É¾³ıweb.config
+    #åˆ é™¤web.config
     If(Test-Path("$Work_Root\Web.config"))
     { Remove-Item "$Work_Root\Web.config" -Recurse -Force -Confirm:$false  }
 
-    #É¾³ıbinÄ¿Â¼ÏÂNLog.config
+    #åˆ é™¤binç›®å½•ä¸‹NLog.config
     If(Test-Path("$Work_Root\bin\NLog.config"))
     { Remove-Item "$Work_Root\bin\NLog.config" -Recurse -Force -Confirm:$false  }
 
-	#É¾³ıÖ÷Ä¿Â¼ÏÂNLog.config
+	#åˆ é™¤ä¸»ç›®å½•ä¸‹NLog.config
     If(Test-Path("$Work_Root\NLog.config"))
     { Remove-Item "$Work_Root\NLog.config" -Recurse -Force -Confirm:$false  }
 
-    #É¾³ıOracle.DataAccess.dll
+    #åˆ é™¤Oracle.DataAccess.dll
     #If(Test-Path("$Work_Root\bin\Oracle.DataAccess.dll"))
     #{ Remove-Item "$Work_Root\bin\Oracle.DataAccess.dll" -Recurse -Force -Confirm:$false  }
-    #É¾³ıUpdate_Journal.html
+    #åˆ é™¤Update_Journal.html
     #If(Test-Path("$Work_Root\Htmls\Update_Journal.html"))
     #{ Remove-Item "$Work_Root\Htmls\Update_Journal.html" -Recurse -Force -Confirm:$false  }
-    #É¾³ıSys_Notice.html
+    #åˆ é™¤Sys_Notice.html
     #If(Test-Path("$Work_Root\Htmls\Sys_Notice.html"))
     #{ Remove-Item "$Work_Root\Htmls\Sys_Notice.html" -Recurse -Force -Confirm:$false  }    
    
-    #****µÄ56CTM¾ö¶¨ÁË´ò°üºóµÄÄ¿Â¼Ãû³Æ**********
+    #****çš„56CTMå†³å®šäº†æ‰“åŒ…åçš„ç›®å½•åç§°**********
     Compress-Archive  -Path $Work_Root  -DestinationPath  $56CTM_Origin_Send_File_Path  -Force
     
     Remove-Item $56CTM_Origin_Send_TEMP_Path -Recurse -Force -Confirm:$false 
@@ -163,7 +163,7 @@ Invoke-Command -Session $originsession -ScriptBlock{
 #*******************************end Origin*************************************************
 
 
-#*******************************begin publish·şÎñÆ÷****************************************
+#*******************************begin publishæœåŠ¡å™¨****************************************
 If(Test-Path($56CTM_Publish_Receive_Path))
 {}
 Else
@@ -174,42 +174,42 @@ If(Test-Path($56CTM_Publish_Send_Path))
 Else
 { mkdir $56CTM_Publish_Send_Path }
 
-#°ÑOrigin»·¾³Ñ¹ËõµÄÎÄ¼ş¿½±´µ½publish·şÎñÆ÷
-echo "Origin->publish£ºfrom $56CTM_Origin_Send_File_Path to $56CTM_Publish_Receive_File_Path" 
+#æŠŠOriginç¯å¢ƒå‹ç¼©çš„æ–‡ä»¶æ‹·è´åˆ°publishæœåŠ¡å™¨
+echo "Origin->publishï¼šfrom $56CTM_Origin_Send_File_Path to $56CTM_Publish_Receive_File_Path" 
 cp -FromSession $originsession -Path $56CTM_Origin_Send_File_Path   -Destination $56CTM_Publish_Receive_File_Path -Recurse -Force
 
-#¶Ï¿ªOrigin·şÎñÆ÷Á¬½Ó
+#æ–­å¼€OriginæœåŠ¡å™¨è¿æ¥
 Remove-PSSession -Id $originsession.Id 
 
-#°ÑÑ¹ËõÎÄ¼ş¿½±´µ½·¢ËÍÄ¿Â¼
+#æŠŠå‹ç¼©æ–‡ä»¶æ‹·è´åˆ°å‘é€ç›®å½•
 cp -Path $56CTM_Publish_Receive_File_Path -Destination $56CTM_Publish_Send_File_Path  -Recurse -Force
-#*******************************end publish·şÎñÆ÷*****************************************
+#*******************************end publishæœåŠ¡å™¨*****************************************
 
 
-#********************************begin Dest·şÎñÆ÷*****************************************
+#********************************begin DestæœåŠ¡å™¨*****************************************
 for($i=0;$i -lt $destarray.GetLength(0);$i++)
 {
   $private:destserverstring = $destarray[$i,0]
   $private:destuserstring = $destarray[$i,1]
   $private:destpassstring = $destarray[$i,2]
-  echo "**************************¿ªÊ¼¸üĞÂ $private:destserverstring *********************************"
+  echo "**************************å¼€å§‹æ›´æ–° $private:destserverstring *********************************"
 
-  #Ä¿±êÃÜÂë
+  #ç›®æ ‡å¯†ç 
   $private:destpass = ConvertTo-SecureString -String $private:destpassstring -AsPlainText -Force 
-  #Ä¿±êÆ¾Ö¤
+  #ç›®æ ‡å‡­è¯
   $private:destcre = New-Object pscredential($private:destuserstring, $private:destpass)
-  #Ä¿±ê»á»°
+  #ç›®æ ‡ä¼šè¯
   $private:destsession = New-PSSession -ComputerName $private:destserverstring -Credential $private:destcre
 
-  #°Ñpublish·şÎñÆ÷µÄÑ¹ËõÎÄ¼ş·¢ËÍµ½Ä¿±ê·şÎñÆ÷µÄReceiveÄ¿Â¼
-  echo "publish->Dest£ºfrom $56CTM_Publish_Send_File_Path to $56CTM_Dest_Receive_File_Path" 
+  #æŠŠpublishæœåŠ¡å™¨çš„å‹ç¼©æ–‡ä»¶å‘é€åˆ°ç›®æ ‡æœåŠ¡å™¨çš„Receiveç›®å½•
+  echo "publish->Destï¼šfrom $56CTM_Publish_Send_File_Path to $56CTM_Dest_Receive_File_Path" 
   cp -Path $56CTM_Publish_Send_File_Path -Destination $56CTM_Dest_Receive_File_Path  -ToSession $destsession -Recurse -Force
 
-  #-ArgumentList´«Èë±¾µØ²ÎÊı********************************
+  #-ArgumentListä¼ å…¥æœ¬åœ°å‚æ•°********************************
   Invoke-Command -Session $private:destsession -ScriptBlock{
     param($56CTM_Dest_Backup_Path,$56CTM_Dest_Backup_File_Path,$56CTM_Dest_Update_Path,$56CTM_Dest_Path_1,$56CTM_Dest_Path_2,$56CTM_Dest_Receive_File_Path,$56CTM_Dest_Receive_Path,$IIS_Name_1,$IIS_Name_2,$AppPools_Name_1,$AppPools_Name_2) 
  
-    #ÅĞ¶ÏbackupÄ¿Â¼ÊÇ·ñ´æÔÚ£¬Èç¹û²»´æÔÚ£¬´´½¨backupÄ¿Â¼
+    #åˆ¤æ–­backupç›®å½•æ˜¯å¦å­˜åœ¨ï¼Œå¦‚æœä¸å­˜åœ¨ï¼Œåˆ›å»ºbackupç›®å½•
     #If(Test-Path($56CTM_Dest_Backup_Path))
     #{}
     #Else
@@ -234,67 +234,67 @@ for($i=0;$i -lt $destarray.GetLength(0);$i++)
     #Else
     #{ mkdir $56CTM_Dest_Path_2 }
 
-    #Í£Ö¹IISµÄÓ¦ÓÃ
-    echo "²âÊÔ¿âIIS£ºÍ£Ö¹ $IIS_Name ·şÎñ" 
+    #åœæ­¢IISçš„åº”ç”¨
+    echo "æµ‹è¯•åº“IISï¼šåœæ­¢ $IIS_Name æœåŠ¡" 
     Stop-WebSite $IIS_Name_1    
 	Stop-WebSite $IIS_Name_2
 
-    #£¨ĞÂÔö20171106£©------------------------------
-    #Í£Ö¹IISµÄÓ¦ÓÃ³ÌĞò³Ø
-    #echo "ÕıÊ½¿âIIS£ºÍ£Ö¹ $AppPools_Name Ó¦ÓÃ³ÌĞò³Ø"
-    #»ñÈ¡Ó¦ÓÃ³ÌĞò³Ø
+    #ï¼ˆæ–°å¢20171106ï¼‰------------------------------
+    #åœæ­¢IISçš„åº”ç”¨ç¨‹åºæ± 
+    #echo "æ­£å¼åº“IISï¼šåœæ­¢ $AppPools_Name åº”ç”¨ç¨‹åºæ± "
+    #è·å–åº”ç”¨ç¨‹åºæ± 
     #Stop-WebItem $AppPools_Name  
     #Start-Sleep -s 30
     #----------------------------------------------
 
-    #±¸·İÔËĞĞ³ÌĞò
-    #echo "²âÊÔ¿â±¸·İ£ºfrom $56CTM_Dest_Path_1 to $56CTM_Dest_Backup_File_Path"
+    #å¤‡ä»½è¿è¡Œç¨‹åº
+    #echo "æµ‹è¯•åº“å¤‡ä»½ï¼šfrom $56CTM_Dest_Path_1 to $56CTM_Dest_Backup_File_Path"
     #Compress-Archive  -Path $56CTM_Dest_Path_1  -DestinationPath  $56CTM_Dest_Backup_File_Path  -Force 
 
-    #ÅÅ³ıÄ¿Â¼
+    #æ’é™¤ç›®å½•
     #$exclude = @('upload','logs','DownFile','logs','MakeExcelFiles')
     #cp "$56CTM_Dest_Path/*" $56CTM_Dest_Backup_File_Path -Recurse -Force -Exclude $exclude
     
-    #Çå³ıDest´ı·¢²¼Ä¿Â¼
+    #æ¸…é™¤Destå¾…å‘å¸ƒç›®å½•
     Remove-Item $56CTM_Dest_Update_Path -Recurse -Force   -Confirm:$false 
 
-    #½«Ñ¹ËõÎÄ¼ş½âÑ¹Ëõ
+    #å°†å‹ç¼©æ–‡ä»¶è§£å‹ç¼©
     Expand-Archive $56CTM_Dest_Receive_File_Path -DestinationPath $56CTM_Dest_Receive_Path -Force
 
-    #°Ñ´ı·¢²¼µÄ³ÌĞò¿½±´µ½DestÖ´ĞĞÄ¿Â¼
+    #æŠŠå¾…å‘å¸ƒçš„ç¨‹åºæ‹·è´åˆ°Destæ‰§è¡Œç›®å½•
     cp "$56CTM_Dest_Update_Path/*" $56CTM_Dest_Path_1 -Recurse -Force
 	cp "$56CTM_Dest_Update_Path/*" $56CTM_Dest_Path_2 -Recurse -Force
 
-    echo "²âÊÔ¿âÎÄ¼şÒÑ¸²¸Ç£º $56CTM_Dest_Update_Path ---> $56CTM_Dest_Path " 
+    echo "æµ‹è¯•åº“æ–‡ä»¶å·²è¦†ç›–ï¼š $56CTM_Dest_Update_Path ---> $56CTM_Dest_Path " 
 
-    #£¨ĞÂÔö20171106£©------------------------------
-    #Æô¶¯Ó¦ÓÃ³ÌĞò³Ø
-    #echo "²âÊÔ¿âIIS£ºÖØÆô $AppPools_Name Ó¦ÓÃ³ÌĞò³Ø" 
+    #ï¼ˆæ–°å¢20171106ï¼‰------------------------------
+    #å¯åŠ¨åº”ç”¨ç¨‹åºæ± 
+    #echo "æµ‹è¯•åº“IISï¼šé‡å¯ $AppPools_Name åº”ç”¨ç¨‹åºæ± " 
     #Start-WebItem $AppPools_Name
     #----------------------------------------------
 
-    #£¨ĞÂÔö20180524£©»ØÊÕÓ¦ÓÃ³ÌĞò³Ø----------------     
+    #ï¼ˆæ–°å¢20180524ï¼‰å›æ”¶åº”ç”¨ç¨‹åºæ± ----------------     
     $appPool_1 =ls IIS:\apppools |Where-Object{$_.name -eq $IIS_Name_1}
 	$appPool_2 =ls IIS:\apppools |Where-Object{$_.name -eq $IIS_Name_2}
     if($appPool){       
        $appPool.recycle()        
-       echo "¡¾³ÌĞò³Ø»ØÊÕ¡¿£º»ØÊÕ $IIS_Name ³ÌĞò³Ø"
+       echo "ã€ç¨‹åºæ± å›æ”¶ã€‘ï¼šå›æ”¶ $IIS_Name ç¨‹åºæ± "
     }
     #----------------------------------------------
 
-    #Æô¶¯IISµÄÓ¦ÓÃ
-    echo "ÕıÊ½¿âIIS£ºÆô¶¯ $IIS_Name ·şÎñ" 
+    #å¯åŠ¨IISçš„åº”ç”¨
+    echo "æ­£å¼åº“IISï¼šå¯åŠ¨ $IIS_Name æœåŠ¡" 
     Start-WebSite $IIS_Name_1
 	Start-WebSite $IIS_Name_2
 
  } -ArgumentList $56CTM_Dest_Backup_Path,$56CTM_Dest_Backup_File_Path,$56CTM_Dest_Update_Path,$56CTM_Dest_Path_1,$56CTM_Dest_Path_2,$56CTM_Dest_Receive_File_Path,$56CTM_Dest_Receive_Path,$IIS_Name_1,$IIS_Name_2,$AppPools_Name_1,$AppPools_Name_2
 
-    #¶Ï¿ªDest·şÎñÆ÷Á¬½Ó
+    #æ–­å¼€DestæœåŠ¡å™¨è¿æ¥
     Remove-PSSession -Id $private:destsession.Id 
 
-    echo "**************************½áÊø¸üĞÂ  $destServerName*********************************"
+    echo "**************************ç»“æŸæ›´æ–°  $destServerName*********************************"
 } 
 
-echo "$Project_Name ¡¾$Type¡¿ ¸üĞÂ¹¤×÷½áÊø"
+echo "$Project_Name ã€$Typeã€‘ æ›´æ–°å·¥ä½œç»“æŸ"
 
 
